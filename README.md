@@ -21,8 +21,8 @@ Full-stack career intelligence platform combining MySQL relational database, Mon
 - ✅ **5-tab interactive dashboard** with real-time analytics and visualizations
 - ✅ **Multi-format resume export** (TXT, HTML, Markdown) with one-click download
 
-[🚀 **View Live Application**](https://career-intelligence-system.streamlit.app)
 
+[🚀 **View Live Application**](https://career-intelligence-system-7nzmus9oycvm7u2ygdzggz.streamlit.app/)
 ---
 
 ## 🏗️ System Architecture

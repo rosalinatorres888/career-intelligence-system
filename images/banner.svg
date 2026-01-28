@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a"/>
+      <stop offset="100%" style="stop-color:#1e293b"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#8b5cf6"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="1200" height="300" fill="url(#bgGrad)"/>
+  
+  <!-- Grid pattern -->
+  <g stroke="#334155" stroke-width="0.5" opacity="0.3">
+    <line x1="0" y1="50" x2="1200" y2="50"/>
+    <line x1="0" y1="100" x2="1200" y2="100"/>
+    <line x1="0" y1="150" x2="1200" y2="150"/>
+    <line x1="0" y1="200" x2="1200" y2="200"/>
+    <line x1="0" y1="250" x2="1200" y2="250"/>
+  </g>
+  
+  <!-- Decorative elements -->
+  <circle cx="100" cy="150" r="80" fill="none" stroke="#3b82f6" stroke-width="1" opacity="0.2"/>
+  <circle cx="100" cy="150" r="120" fill="none" stroke="#8b5cf6" stroke-width="1" opacity="0.1"/>
+  <circle cx="1100" cy="150" r="100" fill="none" stroke="#3b82f6" stroke-width="1" opacity="0.15"/>
+  
+  <!-- Icon placeholder - briefcase/target -->
+  <g transform="translate(80, 100)">
+    <circle cx="40" cy="40" r="35" fill="none" stroke="url(#accentGrad)" stroke-width="3"/>
+    <circle cx="40" cy="40" r="20" fill="none" stroke="#3b82f6" stroke-width="2"/>
+    <circle cx="40" cy="40" r="5" fill="#8b5cf6"/>
+  </g>
+  
+  <!-- Main text -->
+  <text x="200" y="120" font-family="'SF Pro Display', 'Inter', system-ui" font-size="48" font-weight="700" fill="#f8fafc">
+    Career Intelligence System
+  </text>
+  
+  <text x="200" y="160" font-family="'SF Pro Text', 'Inter', system-ui" font-size="20" fill="#94a3b8">
+    AI-Powered Job Matching &amp; Resume Generation Platform
+  </text>
+  
+  <!-- Tech badges -->
+  <g transform="translate(200, 185)">
+    <rect x="0" y="0" width="70" height="24" rx="4" fill="#3b82f6" opacity="0.2"/>
+    <text x="35" y="16" font-family="monospace" font-size="11" fill="#3b82f6" text-anchor="middle">Python</text>
+    
+    <rect x="80" y="0" width="60" height="24" rx="4" fill="#3b82f6" opacity="0.2"/>
+    <text x="110" y="16" font-family="monospace" font-size="11" fill="#3b82f6" text-anchor="middle">MySQL</text>
+    
+    <rect x="150" y="0" width="75" height="24" rx="4" fill="#3b82f6" opacity="0.2"/>
+    <text x="187" y="16" font-family="monospace" font-size="11" fill="#3b82f6" text-anchor="middle">MongoDB</text>
+    
+    <rect x="235" y="0" width="120" height="24" rx="4" fill="#3b82f6" opacity="0.2"/>
+    <text x="295" y="16" font-family="monospace" font-size="11" fill="#3b82f6" text-anchor="middle">Transformers</text>
+    
+    <rect x="365" y="0" width="80" height="24" rx="4" fill="#3b82f6" opacity="0.2"/>
+    <text x="405" y="16" font-family="monospace" font-size="11" fill="#3b82f6" text-anchor="middle">Streamlit</text>
+  </g>
+  
+  <!-- Stats boxes -->
+  <g transform="translate(850, 80)">
+    <rect x="0" y="0" width="130" height="60" rx="8" fill="#3b82f6"/>
+    <text x="65" y="30" font-family="'SF Pro Display', system-ui" font-size="24" font-weight="700" fill="#fff" text-anchor="middle">92.3%</text>
+    <text x="65" y="48" font-family="'SF Pro Text', system-ui" font-size="10" fill="#fff" text-anchor="middle" opacity="0.9">SEMANTIC MATCH</text>
+  </g>
+  
+  <g transform="translate(990, 80)">
+    <rect x="0" y="0" width="130" height="60" rx="8" fill="#8b5cf6"/>
+    <text x="65" y="30" font-family="'SF Pro Display', system-ui" font-size="24" font-weight="700" fill="#fff" text-anchor="middle">MCP</text>
+    <text x="65" y="48" font-family="'SF Pro Text', system-ui" font-size="10" fill="#fff" text-anchor="middle" opacity="0.9">INTEGRATED</text>
+  </g>
+  
+  <g transform="translate(850, 150)">
+    <rect x="0" y="0" width="270" height="45" rx="6" fill="#1e293b" stroke="#334155"/>
+    <text x="20" y="28" font-family="'SF Pro Text', system-ui" font-size="12" fill="#94a3b8">MySQL + MongoDB + Memory Brain + Claude MCP</text>
+  </g>
+  
+  <!-- Bottom decorative line -->
+  <rect x="0" y="290" width="1200" height="10" fill="url(#accentGrad)"/>
+</svg>

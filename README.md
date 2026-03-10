@@ -1,692 +1,289 @@
-![Status](https://img.shields.io/badge/Status-Production-success?style=flat-square)
-![Python](https://img.shields.io/badge/Python-3.9+-blue?style=flat-square&logo=python&logoColor=white)
-![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-FF4B4B?style=flat-square&logo=streamlit&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-Database-4479A1?style=flat-square&logo=mysql&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-NoSQL-47A248?style=flat-square&logo=mongodb&logoColor=white)
-![Accuracy](https://img.shields.io/badge/Accuracy-92.3%25-green?style=flat-square)
-[![Live Demo](https://img.shields.io/badge/Live_Demo-Streamlit_Cloud-FF4B4B?style=flat-square)](https://career-intelligence-system.streamlit.app)
-![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)
-
 # Career Intelligence System
 
-> 🎯 **Production ML system with 92.3% semantic matching accuracy transforming job search from manual labor to data-driven strategy**
+> 🎯 **Production ML system with 92.3% semantic matching accuracy — transforming job search from manual labor to data-driven strategy**
 
-Full-stack career intelligence platform combining MySQL relational database, MongoDB document store, OpenAI embeddings, and interactive Streamlit dashboard. Features real-time semantic job matching, automated resume generation, and comprehensive application analytics.
+Full-stack career intelligence platform combining MySQL relational database, MongoDB document store, OpenAI embeddings, and an interactive Streamlit dashboard. Features real-time semantic job matching, automated resume generation across four career archetypes, and comprehensive application analytics.
 
-**Key Achievements:**
-- ✅ **92.3% semantic matching accuracy** using OpenAI embeddings with cosine similarity
-- ✅ **Live production deployment** on Streamlit Cloud serving real users
-- ✅ **Dual-database architecture** optimizing MySQL (structured) + MongoDB (vectors) for <50ms queries
-- ✅ **75% time reduction** in job application workflow (3 hours → 45 minutes)
-- ✅ **5-tab interactive dashboard** with real-time analytics and visualizations
-- ✅ **Multi-format resume export** (TXT, HTML, Markdown) with one-click download
+[![Status](https://img.shields.io/badge/Status-Production-success?style=flat-square)](https://github.com/rosalinatorres888/career-intelligence-system)
+[![Python](https://img.shields.io/badge/Python-3.9+-blue?style=flat-square&logo=python&logoColor=white)](https://python.org)
+[![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-FF4B4B?style=flat-square&logo=streamlit&logoColor=white)](https://career-intelligence-system.streamlit.app)
+[![MySQL](https://img.shields.io/badge/MySQL-Database-4479A1?style=flat-square&logo=mysql&logoColor=white)](https://mysql.com)
+[![MongoDB](https://img.shields.io/badge/MongoDB-NoSQL-47A248?style=flat-square&logo=mongodb&logoColor=white)](https://mongodb.com)
+[![Accuracy](https://img.shields.io/badge/Accuracy-92.3%25-green?style=flat-square)](https://career-intelligence-system.streamlit.app)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Streamlit_Cloud-FF4B4B?style=flat-square)](https://career-intelligence-system.streamlit.app)
+[![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
 
-
-[🚀 **View Live Application**](https://career-intelligence-system-7nzmus9oycvm7u2ygdzggz.streamlit.app/)
----
-
-## 🏗️ System Architecture
-
-### High-Level Overview
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                     Streamlit Frontend                       │
-│  • 5-tab dashboard (Job Analysis, Match, Resume, Analytics)  │
-│  • Real-time Plotly visualizations                           │
-│  • Session state management                                  │
-└────────────────────────┬────────────────────────────────────┘
-                         │
-                         ▼
-┌─────────────────────────────────────────────────────────────┐
-│                  Intelligence Layer                          │
-│  ┌──────────────────┐  ┌──────────────────┐                │
-│  │ Semantic Matcher │  │ Resume Generator │                │
-│  │ (OpenAI API)     │  │ (AI-Powered)     │                │
-│  └────────┬─────────┘  └────────┬─────────┘                │
-│           │ 92.3% accuracy       │ 3 formats                │
-└───────────┼──────────────────────┼──────────────────────────┘
-            │                      │
-            ▼                      ▼
-┌─────────────────────┐  ┌─────────────────────┐
-│   MySQL Database    │  │  MongoDB Database   │
-│  (Relational Data)  │  │  (Vector Embeddings)│
-│                     │  │                     │
-│  • 12 tables (3NF)  │  │  • Job documents    │
-│  • Applications     │  │  • 1536-dim vectors │
-│  • Skills mapping   │  │  • 1ms queries       │
-│  • Companies/Roles  │  │  • Flexible schema  │
-└─────────────────────┘  └─────────────────────┘
-```
-
-### Polyglot Persistence Strategy
-
-**Why Dual Databases?**
-
-| Data Type | Database | Reason | Query Time |
-|-----------|----------|--------|------------|
-| Structured (applications, skills) | MySQL | ACID, relationships, normalization | 50ms |
-| Unstructured (job descriptions) | MongoDB | Flexible schema, vector storage | 1ms |
-| Embeddings (1536-dim vectors) | MongoDB | Native array support, fast retrieval | <1ms |
-
-**Performance Optimization:**
-- MySQL for transactional integrity (applications, users, companies)
-- MongoDB for semantic search (embeddings, documents)
-- **Result:** 50x faster document retrieval (50ms → 1ms)
+**[🚀 View Live Application](https://career-intelligence-system.streamlit.app)**
 
 ---
 
-## ✨ Features Breakdown
+## System Architecture
 
-### 1. Semantic Job Matching (92.3% Accuracy)
+![Career Intelligence System Architecture](cis_diagram.svg)
 
-**How It Works:**
-1. **Job Description → OpenAI Embeddings** (1536-dimensional vectors)
-2. **Your Resume → OpenAI Embeddings** (same vector space)
-3. **Cosine Similarity** calculation between vectors
-4. **Skill Extraction** using TF-IDF and keyword analysis
-5. **Match Score** composite metric (embedding similarity + keyword overlap)
+> 🖱️ **[View Interactive Version →](https://rosalinatorres888.github.io/career-intelligence-system/cis_architecture.html)**
+> Click any node to explore technical details, stack, and implementation notes.
 
-**Matching Algorithm:**
+---
+
+## Key Results
+
+| Metric | Value | Context |
+|---|---|---|
+| **Semantic Match Accuracy** | 92.3% | Validated on 50+ real job descriptions vs. human expert labels |
+| **Precision** | 89.1% | Confusion matrix analysis |
+| **Recall** | 94.8% | Confusion matrix analysis |
+| **F1-Score** | 91.9% | vs. 68% keyword-only baseline (+34% improvement) |
+| **Query Response** | <50ms | MySQL indexed queries |
+| **MongoDB Retrieval** | 1ms | Embedding document lookups |
+| **Resume Generation** | 35 min | vs. 3 hours manual (75% reduction) |
+
+---
+
+## Features
+
+### 1. Semantic Job Matching — 92.3% Accuracy
+
+**How it works:**
+
+1. Job description → OpenAI `text-embedding-ada-002` (1536-dimensional vector)
+2. Resume profile → same vector space
+3. Cosine similarity computed between vectors
+4. Skill extraction via TF-IDF and keyword analysis
+5. Composite match score returned
+
+**Scoring formula:**
+
 ```python
 final_score = (
     embedding_similarity * 0.60 +  # Primary signal
-    keyword_overlap * 0.25 +       # Required skills match
-    experience_match * 0.10 +       # YoE alignment  
-    domain_alignment * 0.05         # Industry fit
+    keyword_overlap      * 0.25 +  # Required skills match
+    experience_match     * 0.10 +  # Years of experience alignment
+    domain_alignment     * 0.05    # Industry fit
 )
 ```
 
-**Validated Accuracy:**
-- Tested on 50+ real job descriptions
-- 92.3% accuracy vs human expert labeling
-- Outperforms keyword-only methods by 34%
+**Validation methodology:** 50 real job descriptions from LinkedIn and Indeed, labeled by human expert, scored by the system. Confusion matrix analysis against ground truth.
+
+---
 
 ### 2. Automated Resume Generation
 
-**Multi-Format Export:**
-- **Plain Text (.txt)** - ATS-optimized, keyword-rich
-- **HTML (.html)** - Styled for viewing/printing
-- **Markdown (.md)** - Version control friendly
+Four career archetypes, each with tuned content prioritization:
 
-**AI-Powered Customization:**
-- Emphasizes matched skills (shown first)
-- Downplays skill gaps (omitted or grouped)
-- Highlights transferable experience (sales → communication)
-- Adjusts tone (Professional, Academic, Technical)
+| Archetype | Target Roles | Emphasis |
+|---|---|---|
+| **AI_ML** | ML Engineer, AI Engineer, Applied Scientist | Models, pipelines, LLMs, PyTorch |
+| **Data_Engineering** | Data Engineer, MLOps, Platform Engineer | ETL, Spark, Airflow, infrastructure |
+| **Analytics** | Analytics Engineer, Data Analyst, BI Engineer | SQL, dashboards, KPIs, storytelling |
+| **Governance_Ethics** | Data Governance, Compliance, AI Safety | Data quality, policy, audit trails |
 
-**Generation Speed:**
-- Traditional approach: 3 hours manual work
-- Career Intelligence: 35 minutes (75% reduction)
-- Output: Production-ready resume in 3 formats
+**Export formats:** Plain text (ATS-optimized), HTML (styled), Markdown (version-control friendly)
+
+---
 
 ### 3. Real-Time Analytics Dashboard
 
-**5-Tab Interface:**
+Five-tab Streamlit interface:
 
-**Tab 1 - Job Analysis:**
-- Paste job description
-- Real-time semantic analysis
-- Progress tracking with 4-stage pipeline
-- Results in 2-3 seconds
+- **Tab 1 — Job Analysis:** Paste any job description → 2–3 second semantic analysis with 4-stage progress pipeline
+- **Tab 2 — Match Results:** Visual match score, 12+ matched skills breakdown, gap identification, transferable skills highlighted, interactive Plotly bar chart
+- **Tab 3 — Resume Generator:** One-click generation, strategy selection (Match-Optimized / Gap-Mitigation / Balanced), live preview, multi-format download
+- **Tab 4 — Analytics:** Application pipeline visualization, match score distribution, skills category breakdown, success metrics
+- **Tab 5 — Database Demo:** Live SQL query examples, MongoDB operations, system architecture explanation — built for technical interviews
 
-**Tab 2 - Match Results:**
-- Visual match score (large, prominent)
-- Matched skills breakdown (12+ identified)
-- Skill gaps identified (3-5 areas)
-- Transferable skills highlighted
-- Interactive Plotly bar chart
+---
 
-**Tab 3 - Resume Generator:**
-- One-click generation
-- Strategy selection (Match-Optimized, Gap-Mitigation, Balanced)
-- Live preview
-- Multi-format download buttons
+### 4. Polyglot Persistence — MySQL + MongoDB
 
-**Tab 4 - Analytics:**
-- Application pipeline visualization
-- Match score distribution
-- Skills category breakdown (pie chart)
-- Success metrics tracking
-- Interview conversion rates
+**Why two databases?**
 
-**Tab 5 - Database Demo:**
-- Live SQL query examples
-- MongoDB operations showcase
-- System architecture explanation
-- Educational component for technical interviews
+| Data Type | Database | Reason | Query Time |
+|---|---|---|---|
+| Structured (applications, skills, companies) | MySQL | ACID guarantees, relational joins, 3NF normalization | ~50ms |
+| Unstructured (job descriptions, embeddings) | MongoDB | Native array support, flexible schema, fast retrieval | ~1ms |
+| 1536-dim embedding vectors | MongoDB | No serialization overhead, sub-ms lookup | <1ms |
 
-### 4. Database Architecture (3NF + NoSQL)
+**Result:** 50x faster document retrieval for embedding queries (50ms → 1ms).
 
-**MySQL Schema (12 Tables):**
+**MySQL schema — 12 tables, 3rd Normal Form:**
+
 ```sql
--- Core entities (3rd Normal Form)
 users → experiences → experience_skills → skills
-  ↓         ↓
-applications → companies
-  ↓         ↓
-statuses  roles → role_skills
-
--- Normalization eliminates redundancy
--- Foreign keys ensure referential integrity
--- Indexes on match_score, company_id for <50ms queries
+  ↓
+applications → companies → roles → role_skills → statuses
+                           ↓
+                       archetypes
 ```
 
-**MongoDB Collections:**
-```javascript
+**MongoDB collections:**
+
+```json
 {
-  job_descriptions: {
-    company: "Anthropic",
-    embeddings: [1536-dim vector],
-    semantic_score: 0.923,
-    keywords_extracted: [...],
-    analysis_timestamp: ISODate()
-  },
-  
-  resumes_generated: {
-    company: "Anthropic",
-    format: "professional",
-    content: "...",
-    download_count: 3
+  "job_descriptions": {
+    "company": "Anthropic",
+    "embeddings": [1536-dim vector],
+    "semantic_score": 0.923,
+    "keywords_extracted": ["..."],
+    "analysis_timestamp": "ISODate"
   }
 }
 ```
 
 ---
 
-## 📊 Performance Metrics
+## Performance Validation
 
-### System Performance
-| Metric | Value | Benchmark |
-|--------|-------|-----------|
-| **Match Accuracy** | 92.3% | Industry avg: 68% |
-| **Query Response** | <50ms | Target: <100ms |
-| **MongoDB Retrieval** | 1ms | 50x faster than SQL |
-| **Resume Generation** | 35 min | Manual: 3 hours |
-| **User Satisfaction** | 4.5/5 | Based on testing |
+### Semantic Matching — Confusion Matrix
 
-### Real-World Usage Stats
-- **Job descriptions analyzed:** 50+
-- **Resumes generated:** 20+
-- **Applications tracked:** 16 (in demo)
-- **Match scores range:** 78.5% - 95.2%
-- **Average match:** 87.4%
-- **Interview conversion:** 60% (vs 15% industry)
+Tested on 50 real job descriptions with human expert ground truth labels:
 
-### Cost Analysis
-- **OpenAI API costs:** ~$0.02 per analysis
-- **Database hosting:** Free tier (Streamlit Cloud)
-- **Total monthly cost:** <$5
-- **ROI:** Reduced application time worth ~$500/month (at $20/hour)
+| Metric | Score | Baseline (keyword-only) |
+|---|---|---|
+| Accuracy | 92.3% | 68% |
+| Precision | 89.1% | — |
+| Recall | 94.8% | — |
+| F1-Score | 91.9% | — |
+
+### Database Query Performance
+
+**MySQL (indexed):**
+```sql
+SELECT applications (indexed):        12ms
+JOIN 3 tables:                        45ms
+Aggregate query:                      78ms
+Complex subquery:                    124ms
+```
+
+**MongoDB:**
+```javascript
+findOne({_id: ...}):                 0.8ms
+find({semantic_score: {$gte: 0.85}}): 2.3ms
+aggregate pipeline (3 stages):        5.1ms
+```
 
 ---
 
-## 🚀 Installation & Usage
+## Installation & Usage
 
 ### Prerequisites
+
 - Python 3.9+
 - MySQL 8.0+
 - MongoDB 5.0+
 - OpenAI API key
-- Streamlit account (for deployment)
+- Streamlit account (for cloud deployment)
 
-### Quick Start (Local)
+### Quick Start
 
-1. **Clone repository**
 ```bash
 git clone https://github.com/rosalinatorres888/career-intelligence-system.git
 cd career-intelligence-system
-```
-
-2. **Install dependencies**
-```bash
 pip install -r requirements.txt
-```
-
-3. **Set up databases** (Optional - demo works without)
-```bash
-# MySQL
 mysql -u root -p < sql/create_schema.sql
-
-# MongoDB
 mongosh < mongodb/init.js
-```
-
-4. **Configure environment**
-```bash
 cp .env.example .env
-# Add your OpenAI API key to .env
-```
-
-5. **Run application**
-```bash
+# Add your OpenAI API key
 streamlit run career_intelligence_demo.py
 ```
 
-6. **Access dashboard**
-Open browser to: `http://localhost:8501`
-
-### Deployment to Streamlit Cloud
-
-**One-Click Deploy:**
-
-[![Deploy to Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/deploy)
+### Deploy to Streamlit Cloud
 
 1. Fork this repository
-2. Connect to Streamlit Cloud
-3. Add secrets (OpenAI API key)
-4. Deploy!
+2. Connect to [Streamlit Cloud](https://share.streamlit.io)
+3. Add `OPENAI_API_KEY` to Streamlit secrets
+4. Deploy
 
-**Live demo:** https://career-intelligence-system.streamlit.app
-
----
-
-## 💻 Usage Examples
-
-### Running Job Analysis
-
-```python
-# The app handles this through UI, but here's the backend logic:
-
-import openai
-import numpy as np
-
-# Generate embeddings
-job_embedding = openai.Embedding.create(
-    input=job_description,
-    model="text-embedding-ada-002"
-)["data"][0]["embedding"]
-
-resume_embedding = openai.Embedding.create(
-    input=resume_text,
-    model="text-embedding-ada-002"
-)["data"][0]["embedding"]
-
-# Calculate cosine similarity
-similarity = np.dot(job_embedding, resume_embedding) / (
-    np.linalg.norm(job_embedding) * np.linalg.norm(resume_embedding)
-)
-
-match_score = similarity * 100  # Convert to percentage
-```
-
-### Database Queries
-
-```python
-# MySQL - Get high-match applications
-import mysql.connector
-
-conn = mysql.connector.connect(host="localhost", database="career_db")
-cursor = conn.cursor()
-
-cursor.execute("""
-    SELECT c.company_name, r.role_title, a.match_score
-    FROM applications a
-    JOIN companies c ON a.company_id = c.company_id
-    JOIN roles r ON a.role_id = r.role_id
-    WHERE a.match_score > 85
-    ORDER BY a.match_score DESC
-""")
-
-results = cursor.fetchall()
-```
-
-```python
-# MongoDB - Store job embedding
-from pymongo import MongoClient
-
-client = MongoClient("mongodb://localhost:27017/")
-db = client.career_intelligence
-
-db.job_descriptions.insert_one({
-    "company": "Anthropic",
-    "embeddings": job_embedding,  # 1536-dim vector
-    "semantic_score": 0.923,
-    "analyzed_at": datetime.now()
-})
-```
+**Live demo:** [career-intelligence-system.streamlit.app](https://career-intelligence-system.streamlit.app)
 
 ---
 
-## 🛠️ Technical Implementation
-
-### Frontend Architecture (Streamlit)
-
-**5-Tab Layout:**
-- Tab 1: Job description input + semantic analysis
-- Tab 2: Match results with visual score + skills breakdown
-- Tab 3: AI-powered resume generation + download
-- Tab 4: Analytics dashboard with Plotly charts
-- Tab 5: Database operations demo (SQL + MongoDB)
-
-**State Management:**
-```python
-st.session_state = {
-    'mysql_connected': True,
-    'experiences_count': 10,
-    'skills_count': 36,
-    'match_score': 92.3,
-    'matched_skills': [...],
-    'skill_gaps': [...],
-    'applications': [...]  # 16 tracked
-}
-```
-
-### Intelligence Layer
-
-**Semantic Matching Pipeline:**
-1. Text preprocessing (cleaning, tokenization)
-2. Embedding generation (OpenAI text-embedding-ada-002)
-3. Vector similarity (cosine distance in 1536-dim space)
-4. Keyword extraction (TF-IDF)
-5. Composite scoring (embedding + keywords + experience)
-
-**Resume Generation Logic:**
-- Template selection based on format choice
-- Content filtering based on match score
-- Skill prioritization (matched skills first)
-- Dynamic bullet point generation
-- Multi-format rendering (TXT/HTML/MD)
-
-### Data Layer
-
-**MySQL Design (3NF):**
-- 12 normalized tables
-- Foreign key constraints
-- Indexed match_score, company_id
-- Average query: 45ms
-
-**MongoDB Design:**
-- Flexible document schema
-- Native array support for embeddings
-- Sub-1ms document retrieval
-- No join overhead
-
----
-
-## 📊 Dashboard Screenshots
-
-### Main Job Analysis Interface
-*[Screenshot showing job description input and analysis button]*
-
-### Match Results Visualization  
-*[Screenshot showing 92.3% match score with skills breakdown]*
-
-### Resume Generator Output
-*[Screenshot showing generated resume with download buttons]*
-
-### Analytics Dashboard
-*[Screenshot showing application pipeline and match score charts]*
-
----
-
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 career-intelligence-system/
 ├── career_intelligence_demo.py   # Main Streamlit application (741 lines)
-├── requirements.txt               # Python dependencies
-├── .env.example                   # Configuration template
-├── README.md                      # This file
+├── requirements.txt
+├── .env.example
+├── README.md
+├── cis_diagram.svg               # Animated architecture diagram (inline README)
+├── cis_architecture.html         # Interactive architecture diagram (GitHub Pages)
 ├── sql/
-│   └── create_schema.sql         # MySQL table definitions
+│   └── create_schema.sql         # MySQL 12-table schema (3NF)
 ├── mongodb/
-│   └── init.js                   # MongoDB initialization
+│   └── init.js                   # MongoDB collection initialization
 ├── images/
 │   ├── dashboard-main.png
 │   ├── match-results.png
 │   ├── resume-generator.png
 │   └── analytics-view.png
-├── tests/
-│   ├── test_semantic_matching.py
-│   └── test_resume_generation.py
 └── LICENSE
 ```
 
 ---
 
-## 🎯 Use Cases
+## Technical Highlights
 
-### For Job Seekers:
-- Paste any job description → Get instant match score
-- Identify which skills you have vs need
-- Generate tailored resumes in minutes
-- Track multiple applications with analytics
+**Semantic matching over keyword matching:** OpenAI embeddings capture contextual meaning — "built ML pipelines" matches "machine learning infrastructure" even with zero keyword overlap. The 34% accuracy improvement over baseline reflects that gap.
 
-### For Career Counselors:
-- Help clients identify best-fit opportunities
-- Data-driven career positioning advice
-- Quantify skill gaps with precision
-- Track placement success rates
+**Polyglot persistence as architecture decision:** MySQL handles relational joins (applications → companies → roles → skills) with ACID guarantees. MongoDB handles 1536-dimensional vectors without serialization overhead. The 50x retrieval speedup is a direct consequence of using the right tool for each workload.
 
-### For Researchers:
-- Study semantic similarity in job matching
-- Analyze skills evolution in tech industry
-- Benchmark NLP approaches to career planning
-- Explore dual-database performance patterns
+**Production deployment:** Streamlit Cloud deployment in under one hour with zero DevOps overhead. Tradeoff: limited authentication options — acceptable for a demo, a constraint to address before scaling to multiple users.
 
 ---
 
-## 🧠 Technical Highlights
-
-### 1. Semantic Matching Innovation
-
-**Traditional Approach:**
-- Keyword matching (brittle, low recall)
-- Manual resume customization (time-consuming)
-- Subjective assessment (inconsistent)
-
-**Our Approach:**
-- OpenAI embeddings (contextual understanding)
-- Cosine similarity in vector space (quantifiable)
-- Automated skill extraction (reproducible)
-- **Result:** 92.3% accuracy vs 68% keyword-only
-
-### 2. Polyglot Persistence Architecture
-
-**Problem:** Single database inefficient for hybrid workloads
-
-**Solution:** Use right tool for each job
-- MySQL: ACID transactions, joins, normalization
-- MongoDB: Fast document retrieval, vector storage
-- **Result:** 50ms → 1ms for embedding queries
-
-### 3. Real-Time Dashboard
-
-**Challenge:** Complex analytics without lag
-
-**Implementation:**
-- Session state caching
-- Lazy loading of visualizations
-- Plotly for interactive charts
-- Progress indicators for long operations
-
-### 4. Production Deployment
-
-**Streamlit Cloud Deployment:**
-- Zero DevOps overhead
-- Automatic HTTPS
-- Built-in authentication
-- Free tier for demos
-- **Result:** Live demo in production
-
----
-
-## 📊 Validation & Testing
-
-### Semantic Matching Validation
-
-**Test Methodology:**
-- 50 real job descriptions from LinkedIn, Indeed
-- Human expert labels (relevant/not relevant)
-- Automated matching with our system
-- Confusion matrix analysis
-
-**Results:**
-| Metric | Score |
-|--------|-------|
-| Accuracy | 92.3% |
-| Precision | 89.1% |
-| Recall | 94.8% |
-| F1-Score | 91.9% |
-
-**Compared to baseline (keyword matching): +34% accuracy improvement**
-
-### Database Performance Testing
-
-**Query Performance (MySQL):**
-```sql
--- Average response times
-SELECT applications (indexed): 12ms
-JOIN 3 tables: 45ms
-Aggregate query: 78ms
-Complex subquery: 124ms
-```
-
-**Query Performance (MongoDB):**
-```javascript
-// Document operations
-findOne({_id: ...}): 0.8ms
-find({semantic_score: {$gte: 0.85}}): 2.3ms
-aggregate pipeline (3 stages): 5.1ms
-```
-
----
-
-## 🚧 Roadmap
-
-**Current Version: v7.0**
+## Roadmap
 
 ### Completed ✅
-- [x] Semantic matching with OpenAI embeddings
-- [x] MySQL + MongoDB integration
-- [x] Multi-tab Streamlit dashboard
-- [x] Resume generation (3 formats)
-- [x] Real-time analytics
-- [x] Production deployment
+- Semantic matching with OpenAI embeddings (92.3% accuracy)
+- MySQL + MongoDB polyglot architecture
+- 5-tab Streamlit dashboard with Plotly visualizations
+- Multi-format resume generation (TXT, HTML, Markdown)
+- Four career archetypes
+- Production deployment on Streamlit Cloud
+- SQL schema and MongoDB initialization scripts
 
 ### In Progress 🚧
-- [ ] Add BERT embeddings (compare with OpenAI)
-- [ ] Implement caching layer (Redis)
-- [ ] Add user authentication
-- [ ] Build REST API (FastAPI)
+- BERT embeddings comparison (sentence-transformers vs. OpenAI)
+- Redis caching layer
+- FastAPI REST endpoint layer
 
 ### Planned 📋
-- [ ] Add Llama 3 local embeddings (cost reduction)
-- [ ] Implement collaborative filtering
-- [ ] Add email integration for auto-outreach
-- [ ] Build mobile-responsive UI
-- [ ] Add A/B testing framework
+- Local embedding support via Ollama (no API dependency)
+- Collaborative filtering for job recommendations
+- A/B testing framework for archetype performance
 
 ---
 
-## 🎓 Academic Context
+## Academic Context
 
-**Built for:** DADS 6700 - Database Management Systems  
-**Institution:** Northeastern University - MS Data Analytics Engineering  
-**Semester:** Fall 2024  
-**Grade:** A (4.0)
+**Course:** DADS 6700 — Database Management for Analytics
+**Institution:** Northeastern University — MS Data Analytics Engineering (EDGE Program)
+**Semester:** Fall 2025
+**Grade:** A (4.0 GPA)
 
-**Course Objectives Demonstrated:**
-- ✅ Database design (MySQL normalization to 3NF)
-- ✅ NoSQL implementation (MongoDB document modeling)
-- ✅ Complex queries (JOINs, subqueries, aggregations)
-- ✅ Real-world application (solving actual problem)
-- ✅ Performance optimization (indexing, query tuning)
-
-**Technical Depth:**
-- 12-table relational schema
-- Polyglot persistence strategy
-- Query optimization (<50ms avg)
-- Production deployment
-- 741 lines of production code
+This system became the foundation for [ARIA](https://github.com/rosalinatorres888/aria-career-assistant), which extended the semantic matching engine into a fully autonomous 7-stage daily pipeline with local LLM generation via Ollama.
 
 ---
 
-## 💡 Key Learnings
+## Author
 
-### Database Design Decisions
+**Rosalina Torres** — ML/AI Engineer
+MS Data Analytics Engineering @ Northeastern University (EDGE Program)
+Expected Graduation: August 2026 · 4.0 GPA
 
-**1. Why 3NF for MySQL?**
-- Eliminated data redundancy
-- Ensured update anomaly prevention
-- Maintained referential integrity
-- Trade-off: Join overhead acceptable for structured data
-
-**2. Why MongoDB for Embeddings?**
-- Native array support (no serialization)
-- Schema flexibility (varying job structures)
-- Horizontal scaling ready
-- 50x faster for document operations
-
-**3. Why Not Single Database?**
-- Tried MySQL only: Embedding storage inefficient
-- Tried MongoDB only: Lost transactional guarantees
-- **Solution:** Hybrid approach leveraging strengths
-
-### Production Lessons
-
-**1. Streamlit Deployment:**
-- Extremely fast to production (<1 hour)
-- No infrastructure management
-- Great for ML demos and MVPs
-- Limitation: Limited authentication options
-
-**2. OpenAI API:**
-- Consistent embedding quality
-- $0.02 per job analysis (affordable)
-- 1536-dim vectors (rich representation)
-- Consideration: Vendor lock-in risk
-
-**3. Session State:**
-- Streamlit session_state is powerful
-- Enables multi-tab persistence
-- Must handle refresh carefully
-- Alternative: Database-backed sessions for scale
-
----
-
-## 🤝 Contributing
-
-This is an academic/portfolio project. Feedback welcome!
-
-**Areas for contribution:**
-- Additional embedding models (Sentence-BERT, Cohere)
-- UI/UX improvements
-- Test coverage expansion
-- Documentation enhancements
-
----
-
-## 📫 Connect & Collaborate
-
-**Author:** Rosalina Torres  
-**Program:** MS Data Analytics Engineering @ Northeastern University  
-**Expected Graduation:** April 2026 (4.0 GPA)
-
-**Links:**
 - **Live Demo:** [career-intelligence-system.streamlit.app](https://career-intelligence-system.streamlit.app)
-- **LinkedIn:** [linkedin.com/in/rosalinatorres](https://linkedin.com/in/rosalinatorres)
-- **Portfolio:** [rosalinatorres888.github.io](https://rosalinatorres888.github.io)
+- **Portfolio:** [rosalina.sites.northeastern.edu](https://rosalina.sites.northeastern.edu)
+- **LinkedIn:** [linkedin.com/in/rosalina-torres](https://linkedin.com/in/rosalina-torres)
+- **GitHub:** [@rosalinatorres888](https://github.com/rosalinatorres888)
 - **Email:** torres.ros@northeastern.edu
 
 ---
 
-## 📜 License
+## License
 
-MIT License - See LICENSE file for details
-
----
-
-## 🙏 Acknowledgments
-
-- **Northeastern University** - DADS 6700 course and support
-- **OpenAI** - Embedding API enabling semantic matching
-- **Streamlit** - Amazing framework for ML dashboards
-- **MongoDB/MySQL** - Database platforms
+MIT License — See LICENSE file for details
 
 ---
 
-**⭐ If you find this helpful, please star the repo!**
-
-*Part of my ML/AI engineering portfolio demonstrating full-stack data systems, semantic NLP, and production deployment*
+*Part of an ML/AI engineering portfolio demonstrating full-stack data systems, semantic NLP, polyglot persistence, and production deployment. Extended into the [ARIA Autonomous Career Assistant](https://github.com/rosalinatorres888/aria-career-assistant).*

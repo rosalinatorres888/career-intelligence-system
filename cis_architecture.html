@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Career Intelligence System — Architecture</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&family=Syne:wght@400;600;800&display=swap');
+
+  :root {
+    --bg: #f0f4f8;
+    --surface: #ffffff;
+    --surface-dark: #0f172a;
+    --border: #cbd5e1;
+    --accent: #0099bb;
+    --accent2: #7c3aed;
+    --accent3: #059669;
+    --accent4: #d97706;
+    --accent5: #ef4444;
+    --text: #0f172a;
+    --text-dim: #64748b;
+    --text-mid: #334155;
+    --glow: rgba(0,153,187,0.2);
+    --glow2: rgba(124,58,237,0.2);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    min-height: 100vh;
+  }
+
+  .page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 48px 32px;
+  }
+
+  /* ── HEADER ── */
+  .header { text-align: center; margin-bottom: 52px; animation: fadeDown 0.7s ease both; }
+  .live-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(5,150,105,0.1); border: 1px solid rgba(5,150,105,0.3);
+    border-radius: 20px; padding: 4px 14px; font-size: 11px;
+    color: var(--accent3); letter-spacing: 2px; margin-bottom: 16px;
+  }
+  .live-dot { width:6px; height:6px; background:var(--accent3); border-radius:50%; animation: pulse 2s ease infinite; }
+  .header h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, #0099bb 0%, #7c3aed 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    margin-bottom: 8px;
+  }
+  .header-sub { font-size: 11px; color: var(--text-dim); letter-spacing: 2px; margin-bottom: 4px; }
+  .header-meta { font-size: 10px; color: #94a3b8; letter-spacing: 1px; }
+
+  /* ── LAYER SYSTEM ── */
+  .layer {
+    margin-bottom: 8px;
+    animation: fadeDown 0.5s ease both;
+  }
+  .layer-label {
+    font-size: 9px; font-weight: 600; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--text-dim);
+    text-align: center; margin-bottom: 10px;
+  }
+
+  /* Staggered layer animations */
+  .layer:nth-child(1) { animation-delay: 0.05s; }
+  .layer:nth-child(2) { animation-delay: 0.15s; }
+  .layer:nth-child(3) { animation-delay: 0.25s; }
+  .layer:nth-child(4) { animation-delay: 0.35s; }
+  .layer:nth-child(5) { animation-delay: 0.45s; }
+  .layer:nth-child(6) { animation-delay: 0.55s; }
+
+  /* ── CONNECTOR ── */
+  .connector {
+    display: flex; justify-content: center; align-items: center;
+    height: 28px; margin: 0;
+  }
+  .connector-line {
+    width: 2px; height: 28px;
+    background: linear-gradient(to bottom, #7c3aed, #0099bb);
+    position: relative;
+  }
+  .connector-line::after {
+    content: '';
+    position: absolute; bottom: 0; left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: #0099bb;
+  }
+
+  /* ── NODE BASE ── */
+  .node {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .node::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 10px 10px 0 0;
+  }
+  .node:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+  .node.active { box-shadow: 0 0 24px var(--glow); }
+
+  .node-cyan::before  { background: linear-gradient(90deg, #0099bb, #00c4e8); }
+  .node-purple::before { background: linear-gradient(90deg, #7c3aed, #a855f7); }
+  .node-green::before  { background: linear-gradient(90deg, #059669, #10b981); }
+  .node-amber::before  { background: linear-gradient(90deg, #d97706, #f59e0b); }
+
+  .node-cyan:hover  { border-color: var(--accent);  box-shadow: 0 0 20px var(--glow); }
+  .node-purple:hover { border-color: var(--accent2); box-shadow: 0 0 20px var(--glow2); }
+  .node-green:hover  { border-color: var(--accent3); box-shadow: 0 0 20px rgba(5,150,105,0.2); }
+  .node-amber:hover  { border-color: var(--accent4); box-shadow: 0 0 20px rgba(217,119,6,0.2); }
+
+  .node-cyan.active  { border-color: var(--accent); }
+  .node-purple.active { border-color: var(--accent2); }
+  .node-green.active  { border-color: var(--accent3); }
+  .node-amber.active  { border-color: var(--accent4); }
+
+  .node-title {
+    font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700;
+    color: var(--text); margin-bottom: 5px;
+  }
+  .node-sub { font-size: 10px; color: var(--text-dim); line-height: 1.5; }
+  .node-icon { font-size: 20px; margin-bottom: 8px; display: block; }
+
+  /* ── FULL WIDTH NODE ── */
+  .node-full { width: 100%; }
+
+  /* ── TWO COL LAYOUT ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .five-col { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+
+  /* ── BADGE PILLS ── */
+  .badges { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .badge {
+    font-size: 9px; padding: 3px 10px; border-radius: 20px;
+    font-weight: 600; letter-spacing: 0.5px;
+  }
+  .badge-cyan   { background: rgba(0,153,187,0.1);  color: var(--accent);  border: 1px solid rgba(0,153,187,0.25); }
+  .badge-purple { background: rgba(124,58,237,0.1); color: #7c3aed; border: 1px solid rgba(124,58,237,0.25); }
+  .badge-green  { background: rgba(5,150,105,0.1);  color: var(--accent3); border: 1px solid rgba(5,150,105,0.25); }
+  .badge-amber  { background: rgba(217,119,6,0.1);  color: var(--accent4); border: 1px solid rgba(217,119,6,0.25); }
+  .badge-gray   { background: rgba(100,116,139,0.1);color: #64748b; border: 1px solid rgba(100,116,139,0.25); }
+
+  /* ── FORMULA BOX ── */
+  .formula-box {
+    background: var(--surface); border: 1px solid var(--accent2);
+    border-radius: 12px; padding: 20px 28px; text-align: center;
+    cursor: pointer; transition: all 0.25s;
+    animation: fadeUp 0.6s ease 0.7s both;
+  }
+  .formula-box:hover { box-shadow: 0 0 20px var(--glow2); border-color: var(--accent2); transform: translateY(-2px); }
+  .formula-label { font-size: 9px; letter-spacing: 3px; color: var(--text-dim); text-transform: uppercase; margin-bottom: 10px; }
+  .formula-text { font-size: 13px; color: var(--text-mid); line-height: 2; }
+  .formula-text .f-cyan   { color: var(--accent);  font-weight: 700; }
+  .formula-text .f-purple { color: var(--accent2); font-weight: 600; }
+  .formula-text .f-green  { color: var(--accent3); font-weight: 700; }
+  .formula-text .f-amber  { color: var(--accent4); font-weight: 700; }
+  .formula-text .f-red    { color: var(--accent5); font-weight: 700; }
+  .formula-sub { font-size: 10px; color: #94a3b8; margin-top: 8px; letter-spacing: 0.5px; }
+
+  /* ── STATS ROW ── */
+  .stats-row {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px;
+    margin-top: 40px;
+    animation: fadeUp 0.6s ease 0.85s both;
+  }
+  .stat {
+    text-align: center; padding: 18px 12px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; transition: all 0.25s; cursor: default;
+  }
+  .stat:hover { transform: translateY(-2px); border-color: var(--accent); box-shadow: 0 0 16px var(--glow); }
+  .stat-num {
+    font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 800;
+    line-height: 1; margin-bottom: 5px;
+  }
+  .stat-num.cyan   { background: linear-gradient(135deg,#0099bb,#00c4e8); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .stat-num.purple { background: linear-gradient(135deg,#7c3aed,#a855f7); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .stat-num.green  { background: linear-gradient(135deg,#059669,#10b981); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .stat-num.amber  { background: linear-gradient(135deg,#d97706,#f59e0b); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .stat-label { font-size: 9px; color: var(--text-dim); letter-spacing: 1.5px; text-transform: uppercase; }
+
+  /* ── VALIDATION ROW ── */
+  .validation-row {
+    display: grid; grid-template-columns: repeat(4,1fr); gap: 12px;
+    margin-top: 8px;
+    animation: fadeUp 0.5s ease 0.6s both;
+  }
+  .val-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; padding: 12px 14px; text-align: center;
+  }
+  .val-num { font-family: 'Syne',sans-serif; font-size: 20px; font-weight: 800; }
+  .val-label { font-size: 9px; color: var(--text-dim); letter-spacing: 1px; margin-top: 3px; }
+
+  /* ── TOOLTIP ── */
+  .tooltip-panel {
+    position: fixed; bottom: 32px; left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: #0f172a; border: 1px solid var(--accent);
+    border-radius: 12px; padding: 18px 24px;
+    min-width: 340px; max-width: 500px;
+    box-shadow: 0 0 40px var(--glow), 0 20px 60px rgba(0,0,0,0.2);
+    opacity: 0; pointer-events: none;
+    transition: all 0.3s ease; z-index: 100;
+  }
+  .tooltip-panel.show { opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+  .tooltip-title { font-family:'Syne',sans-serif; font-size:15px; font-weight:700; color:#00d4ff; margin-bottom:6px; }
+  .tooltip-body  { font-size:12px; color:#94a3b8; line-height:1.6; }
+  .tooltip-tech  { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+  .tech-pill { font-size:10px; padding:3px 10px; border-radius:20px; background:rgba(0,212,255,0.12); border:1px solid rgba(0,212,255,0.3); color:#00d4ff; }
+  .tooltip-close { position:absolute; top:12px; right:12px; background:none; border:none; color:#64748b; cursor:pointer; font-size:16px; transition:color 0.2s; }
+  .tooltip-close:hover { color:#e2e8f0; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeDown  { from{opacity:0;transform:translateY(-14px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeUp    { from{opacity:0;transform:translateY(14px)}  to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeIn    { from{opacity:0} to{opacity:1} }
+  @keyframes pulse     { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+
+  @media(max-width:768px) {
+    .two-col,.three-col,.five-col,.stats-row,.validation-row { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="live-badge"><div class="live-dot"></div>PRODUCTION · STREAMLIT CLOUD</div>
+    <p class="header-sub">System Architecture</p>
+    <h1>Career Intelligence System</h1>
+    <p class="header-meta">92.3% Semantic Matching · MySQL + MongoDB · OpenAI Embeddings · DADS 6700 · Northeastern University · Fall 2025</p>
+  </div>
+
+  <!-- LAYER 0: STREAMLIT FRONTEND -->
+  <div class="layer">
+    <div class="layer-label">⬡ Frontend — Streamlit Dashboard</div>
+    <div class="node node-cyan node-full"
+         data-title="Streamlit Dashboard — career-intelligence-system.streamlit.app"
+         data-desc="5-tab interactive interface built with Streamlit and Plotly. Deployed to Streamlit Cloud with zero DevOps overhead. Session state management enables multi-tab persistence. Each tab is a self-contained workflow: paste JD → semantic analysis → match results → resume generation → analytics → database demo."
+         data-tech="Streamlit,Plotly,st.session_state,Streamlit Cloud,Python 3.9+">
+      <div style="display:flex; align-items:center; gap:20px; flex-wrap:wrap;">
+        <div>
+          <span class="node-icon" style="margin:0; font-size:22px;">🖥️</span>
+        </div>
+        <div style="flex:1;">
+          <div class="node-title">Streamlit Dashboard</div>
+          <div class="node-sub">5-tab interface · Plotly visualizations · Session state · career-intelligence-system.streamlit.app</div>
+        </div>
+        <div class="badges" style="margin:0;">
+          <span class="badge badge-cyan">Tab 1 — Job Analysis</span>
+          <span class="badge badge-purple">Tab 2 — Match Results</span>
+          <span class="badge badge-amber">Tab 3 — Resume Gen</span>
+          <span class="badge badge-green">Tab 4 — Analytics</span>
+          <span class="badge badge-gray">Tab 5 — DB Demo</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector"><div class="connector-line"></div></div>
+
+  <!-- LAYER 1: INTELLIGENCE LAYER -->
+  <div class="layer">
+    <div class="layer-label">⬡ Intelligence Layer</div>
+    <div class="two-col">
+
+      <div class="node node-purple"
+           data-title="Semantic Matcher — 92.3% Accuracy"
+           data-desc="Core ML engine. Generates 1536-dimensional embeddings via OpenAI text-embedding-ada-002 for both job descriptions and resume profiles. Computes cosine similarity in vector space. Composite score: embedding_sim×0.60 + keyword_overlap×0.25 + exp_match×0.10 + domain×0.05. Validated on 50+ real job descriptions with human expert ground truth labels. Outperforms keyword-only matching by 34%."
+           data-tech="OpenAI,text-embedding-ada-002,cosine_similarity,numpy,TF-IDF,sklearn">
+        <span class="node-icon">🧠</span>
+        <div class="node-title">Semantic Matcher</div>
+        <div class="node-sub">OpenAI text-embedding-ada-002 · 1536-dim vectors · cosine similarity</div>
+        <div class="badges">
+          <span class="badge badge-purple">92.3% accuracy</span>
+          <span class="badge badge-purple">+34% vs keyword baseline</span>
+          <span class="badge badge-purple">F1: 91.9%</span>
+        </div>
+      </div>
+
+      <div class="node node-amber"
+           data-title="Resume Generator — 4 Archetypes"
+           data-desc="Generates tailored resumes by detecting the optimal career archetype from job description semantics. AI_ML targets ML Engineer/Applied Scientist roles, emphasizing models, LLMs, PyTorch. Data_Engineering targets ETL, Spark, Airflow, infrastructure. Analytics targets SQL, dashboards, BI storytelling. Governance_Ethics targets data quality, compliance, audit trails. Exports in TXT (ATS-optimized), HTML (styled), and Markdown (version-control friendly)."
+           data-tech="archetype_detection,TF-IDF,template_engine,AI_ML,Data_Eng,Analytics,Gov_Ethics">
+        <span class="node-icon">📄</span>
+        <div class="node-title">Resume Generator</div>
+        <div class="node-sub">4 archetypes · content prioritization · 3 export formats</div>
+        <div class="badges">
+          <span class="badge badge-amber">AI_ML</span>
+          <span class="badge badge-amber">Data_Eng</span>
+          <span class="badge badge-amber">Analytics</span>
+          <span class="badge badge-amber">Gov_Ethics</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="connector"><div class="connector-line"></div></div>
+
+  <!-- LAYER 2: DATA LAYER -->
+  <div class="layer">
+    <div class="layer-label">⬡ Data Persistence Layer — Polyglot Architecture</div>
+    <div class="two-col">
+
+      <div class="node node-cyan"
+           data-title="MySQL — Relational Database (3NF)"
+           data-desc="12-table schema normalized to 3rd Normal Form. Handles all structured transactional data: users, experiences, applications, companies, roles, skills, archetypes, statuses. Foreign key constraints enforce referential integrity. Indexes on match_score and company_id deliver ~50ms average query time. Chosen for ACID guarantees and relational join support — the right tool for structured career data."
+           data-tech="MySQL 8.0,3NF normalization,InnoDB,foreign keys,indexes,~50ms avg,localhost:3306">
+        <span class="node-icon">🗃️</span>
+        <div class="node-title">MySQL — Relational (3NF)</div>
+        <div class="node-sub">12 tables · ACID · foreign keys · indexed joins</div>
+        <div style="margin-top:10px; font-size:10px; color:var(--text-mid); font-family:'JetBrains Mono',monospace; line-height:1.8;">
+          users → experiences → experience_skills<br>
+          applications → companies → roles<br>
+          role_skills · archetypes · statuses
+        </div>
+        <div class="badges">
+          <span class="badge badge-cyan">3rd Normal Form</span>
+          <span class="badge badge-cyan">~50ms avg</span>
+          <span class="badge badge-cyan">localhost:3306</span>
+        </div>
+      </div>
+
+      <div class="node node-green"
+           data-title="MongoDB — NoSQL Document Store"
+           data-desc="Stores 1536-dimensional embedding vectors natively as arrays — no serialization overhead. Flexible document schema accommodates varying job description structures. Sub-millisecond document retrieval delivers 50x speedup over MySQL for embedding queries. Collections: job_descriptions (embeddings + metadata), resumes_generated (content + download tracking). Chosen specifically because relational databases require serializing float arrays, adding ~49ms overhead per query."
+           data-tech="MongoDB 5.0,pymongo,native arrays,1536-dim vectors,flexible schema,~1ms avg,localhost:27017">
+        <span class="node-icon">🍃</span>
+        <div class="node-title">MongoDB — NoSQL (Vectors)</div>
+        <div class="node-sub">1536-dim embeddings · flexible schema · native array support</div>
+        <div style="margin-top:10px; font-size:10px; color:var(--text-mid); font-family:'JetBrains Mono',monospace; line-height:1.8;">
+          job_descriptions → embeddings[1536]<br>
+          resumes_generated → content + tracking<br>
+          50x faster than SQL for vector ops
+        </div>
+        <div class="badges">
+          <span class="badge badge-green">Native arrays</span>
+          <span class="badge badge-green">~1ms avg</span>
+          <span class="badge badge-green">50x speedup</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="connector"><div class="connector-line"></div></div>
+
+  <!-- LAYER 3: VALIDATION -->
+  <div class="layer">
+    <div class="layer-label">⬡ Validation Results — 50 Real Job Descriptions · Human Expert Labels</div>
+    <div class="validation-row">
+      <div class="val-card" style="border-color:rgba(124,58,237,0.3);">
+        <div class="val-num" style="color:#7c3aed;">92.3%</div>
+        <div class="val-label">Accuracy</div>
+      </div>
+      <div class="val-card" style="border-color:rgba(0,153,187,0.3);">
+        <div class="val-num" style="color:#0099bb;">89.1%</div>
+        <div class="val-label">Precision</div>
+      </div>
+      <div class="val-card" style="border-color:rgba(5,150,105,0.3);">
+        <div class="val-num" style="color:#059669;">94.8%</div>
+        <div class="val-label">Recall</div>
+      </div>
+      <div class="val-card" style="border-color:rgba(217,119,6,0.3);">
+        <div class="val-num" style="color:#d97706;">91.9%</div>
+        <div class="val-label">F1-Score</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCORING FORMULA -->
+  <div style="margin-top:16px;">
+    <div class="formula-box"
+         data-title="Composite Scoring Formula"
+         data-desc="Four-component weighted formula. Embedding similarity (60%) is the primary signal — OpenAI text-embedding-ada-002 cosine similarity captures contextual meaning that keyword matching misses entirely. Keyword overlap (25%) ensures hard requirements aren't missed by pure semantic matching. Experience match (10%) checks years-of-experience alignment. Domain alignment (5%) is a light industry-fit signal. This weighting was tuned against the 50-job validation set to maximize F1-score."
+         data-tech="cosine_similarity,TF-IDF,text-embedding-ada-002,numpy,sklearn,weighted_ensemble">
+      <div class="formula-label">Scoring Formula — career_intelligence_demo.py</div>
+      <div class="formula-text">
+        final_score = <span class="f-cyan">embedding_sim</span> <span class="f-purple">× 0.60</span>
+        &nbsp;+&nbsp; <span class="f-cyan">keyword_overlap</span> <span class="f-purple">× 0.25</span>
+        &nbsp;+&nbsp; <span class="f-amber">exp_match</span> <span class="f-purple">× 0.10</span>
+        &nbsp;+&nbsp; <span class="f-green">domain</span> <span class="f-purple">× 0.05</span>
+      </div>
+      <div class="formula-sub">
+        text-embedding-ada-002 · 1536-dim vector space · cosine similarity · +34% over keyword-only baseline
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS ROW -->
+  <div class="stats-row">
+    <div class="stat">
+      <div class="stat-num purple">92.3%</div>
+      <div class="stat-label">Match Accuracy</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num cyan">12</div>
+      <div class="stat-label">MySQL Tables</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num green">50x</div>
+      <div class="stat-label">Faster Retrieval</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num amber">4</div>
+      <div class="stat-label">Resume Archetypes</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num cyan">75%</div>
+      <div class="stat-label">Time Reduction</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- TOOLTIP PANEL -->
+<div class="tooltip-panel" id="tooltip">
+  <button class="tooltip-close" onclick="closeTooltip()">✕</button>
+  <div class="tooltip-title" id="tooltip-title"></div>
+  <div class="tooltip-body"  id="tooltip-body"></div>
+  <div class="tooltip-tech"  id="tooltip-tech"></div>
+</div>
+
+<script>
+  const tooltip      = document.getElementById('tooltip');
+  const tooltipTitle = document.getElementById('tooltip-title');
+  const tooltipBody  = document.getElementById('tooltip-body');
+  const tooltipTech  = document.getElementById('tooltip-tech');
+
+  function showTooltip(el) {
+    if (!el.dataset.title) return;
+    tooltipTitle.textContent = el.dataset.title;
+    tooltipBody.textContent  = el.dataset.desc || '';
+    tooltipTech.innerHTML = (el.dataset.tech || '')
+      .split(',').filter(Boolean)
+      .map(t => `<span class="tech-pill">${t.trim()}</span>`).join('');
+    tooltip.classList.add('show');
+    document.querySelectorAll('.node,.formula-box,.val-card').forEach(n => n.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  function closeTooltip() {
+    tooltip.classList.remove('show');
+    document.querySelectorAll('.node,.formula-box,.val-card').forEach(n => n.classList.remove('active'));
+  }
+
+  document.querySelectorAll('.node, .formula-box').forEach(el => {
+    el.addEventListener('click', e => {
+      e.stopPropagation();
+      el.classList.contains('active') ? closeTooltip() : showTooltip(el);
+    });
+  });
+
+  document.addEventListener('click', closeTooltip);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeTooltip(); });
+
+  // Counter animation
+  function animateCounter(el, targetStr, delay = 0) {
+    const isPercent = targetStr.includes('%');
+    const isX = targetStr.includes('x');
+    const num = parseFloat(targetStr);
+    setTimeout(() => {
+      const start = performance.now();
+      const duration = 1200;
+      const update = (time) => {
+        const p = Math.min((time - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        const cur = (eased * num).toFixed(num % 1 !== 0 ? 1 : 0);
+        el.textContent = cur + (isPercent ? '%' : isX ? 'x' : '');
+        if (p < 1) requestAnimationFrame(update);
+        else el.textContent = targetStr;
+      };
+      requestAnimationFrame(update);
+    }, delay);
+  }
+
+  setTimeout(() => {
+    const statNums = document.querySelectorAll('.stat-num');
+    const targets  = ['92.3%','12','50x','4','75%'];
+    statNums.forEach((el, i) => animateCounter(el, targets[i], i * 80));
+  }, 900);
+</script>
+</body>
+</html>

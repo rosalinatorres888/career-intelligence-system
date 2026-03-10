@@ -21,7 +21,9 @@ Full-stack career intelligence platform combining MySQL relational database, Mon
 
 ![Career Intelligence System Architecture](cis_diagram.png)
 
-> 🖱️ **[View Interactive Version →](https://rosalinatorres888.github.io/career-intelligence-system/cis_architecture.html)**
+> 🖱️ **[View Interactive Architecture Diagram →](https://rosalinatorres888.github.io/career-intelligence-system/cis_architecture.html)**
+
+> 🖱️ **[View Interactive Version →](https://career-intelligence-system-7nzmus9oycvm7u2ygdzggz.streamlit.app)**
 > Click any node to explore technical details, stack, and implementation notes.
 
 | Metric | Value |

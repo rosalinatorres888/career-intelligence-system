@@ -6,14 +6,14 @@ Full-stack career intelligence platform combining MySQL relational database, Mon
 
 [![Status](https://img.shields.io/badge/Status-Production-success?style=flat-square)](https://github.com/rosalinatorres888/career-intelligence-system)
 [![Python](https://img.shields.io/badge/Python-3.9+-blue?style=flat-square&logo=python&logoColor=white)](https://python.org)
-[![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-FF4B4B?style=flat-square&logo=streamlit&logoColor=white)](https://career-intelligence-system.streamlit.app)
+[![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-FF4B4B?style=flat-square&logo=streamlit&logoColor=white)](https://career-intelligence-system-7nzmus9oycvm7u2ygdzggz.streamlit.app)
 [![MySQL](https://img.shields.io/badge/MySQL-Database-4479A1?style=flat-square&logo=mysql&logoColor=white)](https://mysql.com)
 [![MongoDB](https://img.shields.io/badge/MongoDB-NoSQL-47A248?style=flat-square&logo=mongodb&logoColor=white)](https://mongodb.com)
-[![Accuracy](https://img.shields.io/badge/Accuracy-92.3%25-green?style=flat-square)](https://career-intelligence-system.streamlit.app)
-[![Live Demo](https://img.shields.io/badge/Live_Demo-Streamlit_Cloud-FF4B4B?style=flat-square)](https://career-intelligence-system.streamlit.app)
+[![Accuracy](https://img.shields.io/badge/Accuracy-92.3%25-green?style=flat-square)](https://career-intelligence-system-7nzmus9oycvm7u2ygdzggz.streamlit.app)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Streamlit_Cloud-FF4B4B?style=flat-square)](https://career-intelligence-system-7nzmus9oycvm7u2ygdzggz.streamlit.app)
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
 
-**[🚀 View Live Application](https://career-intelligence-system.streamlit.app)**
+**[🚀 View Live Application](https://career-intelligence-system-7nzmus9oycvm7u2ygdzggz.streamlit.app)**
 
 ---
 
@@ -22,9 +22,6 @@ Full-stack career intelligence platform combining MySQL relational database, Mon
 ![Career Intelligence System Architecture](cis_diagram.png)
 
 > 🖱️ **[View Interactive Architecture Diagram →](https://rosalinatorres888.github.io/career-intelligence-system/cis_architecture.html)**
-
-> 🖱️ **[View Interactive Version →](https://career-intelligence-system-7nzmus9oycvm7u2ygdzggz.streamlit.app)**
-> Click any node to explore technical details, stack, and implementation notes.
 
 | Metric | Value |
 |---|---|
@@ -205,7 +202,7 @@ streamlit run career_intelligence_demo.py
 3. Add `OPENAI_API_KEY` to Streamlit secrets
 4. Deploy
 
-**Live demo:** [career-intelligence-system.streamlit.app](https://career-intelligence-system.streamlit.app)
+**Live demo:** [career-intelligence-system.streamlit.app](https://career-intelligence-system-7nzmus9oycvm7u2ygdzggz.streamlit.app)
 
 ---
 
@@ -283,7 +280,7 @@ This system became the foundation for [ARIA](https://github.com/rosalinatorres88
 MS Data Analytics Engineering @ Northeastern University (EDGE Program)
 Expected Graduation: August 2026 · 4.0 GPA
 
-- **Live Demo:** [career-intelligence-system.streamlit.app](https://career-intelligence-system.streamlit.app)
+- **Live Demo:** [career-intelligence-system.streamlit.app](https://career-intelligence-system-7nzmus9oycvm7u2ygdzggz.streamlit.app)
 - **Portfolio:** [rosalina.sites.northeastern.edu](https://rosalina.sites.northeastern.edu)
 - **LinkedIn:** [linkedin.com/in/rosalina-torres](https://linkedin.com/in/rosalina-torres)
 - **GitHub:** [@rosalinatorres888](https://github.com/rosalinatorres888)

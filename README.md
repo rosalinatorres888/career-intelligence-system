@@ -23,6 +23,10 @@ Full-stack career intelligence platform combining MySQL relational database, Mon
 
 > 🖱️ **[View Interactive Version →](https://rosalinatorres888.github.io/career-intelligence-system/cis_architecture.html)**
 > Click any node to explore technical details, stack, and implementation notes.
+| 92.3% | 12 | 50x | 4 | 75% |
+|:---:|:---:|:---:|:---:|:---:|
+| Match Accuracy | MySQL Tables | Faster Retrieval | Resume Archetypes | Time Reduction |
+
 
 ---
 

@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 980" width="900" height="980" font-family="'Courier New', monospace">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 820" width="900" height="820" font-family="'Courier New', monospace">
   <defs>
     <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#f0f4f8"/><stop offset="100%" style="stop-color:#e8eef5"/></linearGradient>
     <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#0099bb"/><stop offset="100%" style="stop-color:#00c4e8"/></linearGradient>
@@ -19,8 +19,8 @@
       @keyframes flowDash{from{stroke-dashoffset:20}to{stroke-dashoffset:0}}@keyframes fadeDown{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}@keyframes fadeRight{from{opacity:0;transform:translateX(-16px)}to{opacity:1;transform:translateX(0)}}@keyframes fadeLeft{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:translateX(0)}}@keyframes livePulse{0%,100%{opacity:1;r:4}50%{opacity:0.4;r:3}}@keyframes badgePulse{0%,100%{opacity:1}50%{opacity:0.6}}
     </style>
   </defs>
-  <rect width="900" height="980" fill="url(#bgGrad)" rx="16"/>
-  <rect width="900" height="980" fill="url(#grid)" rx="16" opacity="0.4"/>
+  <rect width="900" height="820" fill="url(#bgGrad)" rx="16"/>
+  <rect width="900" height="820" fill="url(#grid)" rx="16" opacity="0.4"/>
   <g class="title-group">
     <rect x="300" y="16" width="300" height="24" rx="12" fill="none" stroke="#059669" stroke-width="1.2" opacity="0.6"/>
     <circle cx="318" cy="28" r="4" fill="#059669" class="live-dot"/>
@@ -104,30 +104,5 @@
     <rect x="396" y="624" width="62" height="14" rx="7" fill="rgba(0,153,187,0.1)" stroke="rgba(0,153,187,0.3)" stroke-width="1"/><text x="427" y="634" text-anchor="middle" font-size="8" fill="#0099bb" font-weight="700">1536-dim vectors</text>
     <rect x="466" y="624" width="84" height="14" rx="7" fill="rgba(5,150,105,0.1)" stroke="rgba(5,150,105,0.3)" stroke-width="1"/><text x="508" y="634" text-anchor="middle" font-size="8" fill="#059669" font-weight="700">cosine similarity</text>
   </g>
-  <!-- Stats Table - GitHub-safe, no font tricks -->
-  <g>
-    <rect x="100" y="655" width="700" height="110" rx="10" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
-    <!-- Header row background -->
-    <rect x="100" y="655" width="700" height="4" rx="2" fill="#7c3aed"/>
-    <!-- Vertical dividers -->
-    <line x1="240" y1="659" x2="240" y2="765" stroke="#e2e8f0" stroke-width="1"/>
-    <line x1="380" y1="659" x2="380" y2="765" stroke="#e2e8f0" stroke-width="1"/>
-    <line x1="520" y1="659" x2="520" y2="765" stroke="#e2e8f0" stroke-width="1"/>
-    <line x1="660" y1="659" x2="660" y2="765" stroke="#e2e8f0" stroke-width="1"/>
-    <!-- Numbers row -->
-    <text x="170" y="710" text-anchor="middle" font-family="Arial" font-size="26" font-weight="bold" fill="#7c3aed">92.3%</text>
-    <text x="310" y="710" text-anchor="middle" font-family="Arial" font-size="26" font-weight="bold" fill="#0099bb">12</text>
-    <text x="450" y="710" text-anchor="middle" font-family="Arial" font-size="26" font-weight="bold" fill="#059669">50x</text>
-    <text x="590" y="710" text-anchor="middle" font-family="Arial" font-size="26" font-weight="bold" fill="#d97706">4</text>
-    <text x="730" y="710" text-anchor="middle" font-family="Arial" font-size="26" font-weight="bold" fill="#0099bb">75%</text>
-    <!-- Divider line -->
-    <line x1="120" y1="726" x2="780" y2="726" stroke="#f1f5f9" stroke-width="1"/>
-    <!-- Labels row -->
-    <text x="170" y="748" text-anchor="middle" font-family="Arial" font-size="9" fill="#94a3b8">MATCH ACCURACY</text>
-    <text x="310" y="748" text-anchor="middle" font-family="Arial" font-size="9" fill="#94a3b8">MYSQL TABLES</text>
-    <text x="450" y="748" text-anchor="middle" font-family="Arial" font-size="9" fill="#94a3b8">FASTER RETRIEVAL</text>
-    <text x="590" y="748" text-anchor="middle" font-family="Arial" font-size="9" fill="#94a3b8">RESUME ARCHETYPES</text>
-    <text x="730" y="748" text-anchor="middle" font-family="Arial" font-size="9" fill="#94a3b8">TIME REDUCTION</text>
-  </g>
-  <text x="450" y="858" text-anchor="middle" font-size="8.5" fill="#cbd5e1" letter-spacing="1">github.com/rosalinatorres888/career-intelligence-system  ·  DADS 6700  ·  Northeastern University  ·  Fall 2025</text>
+  <text x="450" y="780" text-anchor="middle" font-size="8.5" fill="#cbd5e1" letter-spacing="1">github.com/rosalinatorres888/career-intelligence-system  ·  DADS 6700  ·  Northeastern University  ·  Fall 2025</text>
 </svg>

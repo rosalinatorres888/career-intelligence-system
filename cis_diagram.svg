@@ -104,32 +104,30 @@
     <rect x="396" y="624" width="62" height="14" rx="7" fill="rgba(0,153,187,0.1)" stroke="rgba(0,153,187,0.3)" stroke-width="1"/><text x="427" y="634" text-anchor="middle" font-size="8" fill="#0099bb" font-weight="700">1536-dim vectors</text>
     <rect x="466" y="624" width="84" height="14" rx="7" fill="rgba(5,150,105,0.1)" stroke="rgba(5,150,105,0.3)" stroke-width="1"/><text x="508" y="634" text-anchor="middle" font-size="8" fill="#059669" font-weight="700">cosine similarity</text>
   </g>
+  <!-- Stats Table - GitHub-safe, no font tricks -->
   <g>
-    <rect x="50" y="650" width="140" height="130" rx="10" fill="white" stroke="#e2e8f0" stroke-width="1"/>
-    <text text-anchor="middle" font-family="Arial,sans-serif" font-weight="900" font-size="28" fill="#7c3aed">
-      <tspan x="120" dy="0" y="700">92.3%</tspan>
-      <tspan x="120" dy="38" font-size="9" font-weight="400" fill="#94a3b8" letter-spacing="1">MATCH ACCURACY</tspan>
-    </text>
-    <rect x="205" y="650" width="140" height="130" rx="10" fill="white" stroke="#e2e8f0" stroke-width="1"/>
-    <text text-anchor="middle" font-family="Arial,sans-serif" font-weight="900" font-size="28" fill="#0099bb">
-      <tspan x="275" dy="0" y="700">12</tspan>
-      <tspan x="275" dy="38" font-size="9" font-weight="400" fill="#94a3b8" letter-spacing="1">MYSQL TABLES</tspan>
-    </text>
-    <rect x="360" y="650" width="140" height="130" rx="10" fill="white" stroke="#e2e8f0" stroke-width="1"/>
-    <text text-anchor="middle" font-family="Arial,sans-serif" font-weight="900" font-size="28" fill="#059669">
-      <tspan x="430" dy="0" y="700">50x</tspan>
-      <tspan x="430" dy="38" font-size="9" font-weight="400" fill="#94a3b8" letter-spacing="1">FASTER RETRIEVAL</tspan>
-    </text>
-    <rect x="515" y="650" width="140" height="130" rx="10" fill="white" stroke="#e2e8f0" stroke-width="1"/>
-    <text text-anchor="middle" font-family="Arial,sans-serif" font-weight="900" font-size="28" fill="#d97706">
-      <tspan x="585" dy="0" y="700">4</tspan>
-      <tspan x="585" dy="38" font-size="9" font-weight="400" fill="#94a3b8" letter-spacing="1">RESUME ARCHETYPES</tspan>
-    </text>
-    <rect x="670" y="650" width="140" height="130" rx="10" fill="white" stroke="#e2e8f0" stroke-width="1"/>
-    <text text-anchor="middle" font-family="Arial,sans-serif" font-weight="900" font-size="28" fill="#0099bb">
-      <tspan x="740" dy="0" y="700">75%</tspan>
-      <tspan x="740" dy="38" font-size="9" font-weight="400" fill="#94a3b8" letter-spacing="1">TIME REDUCTION</tspan>
-    </text>
+    <rect x="100" y="655" width="700" height="110" rx="10" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
+    <!-- Header row background -->
+    <rect x="100" y="655" width="700" height="4" rx="2" fill="#7c3aed"/>
+    <!-- Vertical dividers -->
+    <line x1="240" y1="659" x2="240" y2="765" stroke="#e2e8f0" stroke-width="1"/>
+    <line x1="380" y1="659" x2="380" y2="765" stroke="#e2e8f0" stroke-width="1"/>
+    <line x1="520" y1="659" x2="520" y2="765" stroke="#e2e8f0" stroke-width="1"/>
+    <line x1="660" y1="659" x2="660" y2="765" stroke="#e2e8f0" stroke-width="1"/>
+    <!-- Numbers row -->
+    <text x="170" y="710" text-anchor="middle" font-family="Arial" font-size="26" font-weight="bold" fill="#7c3aed">92.3%</text>
+    <text x="310" y="710" text-anchor="middle" font-family="Arial" font-size="26" font-weight="bold" fill="#0099bb">12</text>
+    <text x="450" y="710" text-anchor="middle" font-family="Arial" font-size="26" font-weight="bold" fill="#059669">50x</text>
+    <text x="590" y="710" text-anchor="middle" font-family="Arial" font-size="26" font-weight="bold" fill="#d97706">4</text>
+    <text x="730" y="710" text-anchor="middle" font-family="Arial" font-size="26" font-weight="bold" fill="#0099bb">75%</text>
+    <!-- Divider line -->
+    <line x1="120" y1="726" x2="780" y2="726" stroke="#f1f5f9" stroke-width="1"/>
+    <!-- Labels row -->
+    <text x="170" y="748" text-anchor="middle" font-family="Arial" font-size="9" fill="#94a3b8">MATCH ACCURACY</text>
+    <text x="310" y="748" text-anchor="middle" font-family="Arial" font-size="9" fill="#94a3b8">MYSQL TABLES</text>
+    <text x="450" y="748" text-anchor="middle" font-family="Arial" font-size="9" fill="#94a3b8">FASTER RETRIEVAL</text>
+    <text x="590" y="748" text-anchor="middle" font-family="Arial" font-size="9" fill="#94a3b8">RESUME ARCHETYPES</text>
+    <text x="730" y="748" text-anchor="middle" font-family="Arial" font-size="9" fill="#94a3b8">TIME REDUCTION</text>
   </g>
   <text x="450" y="858" text-anchor="middle" font-size="8.5" fill="#cbd5e1" letter-spacing="1">github.com/rosalinatorres888/career-intelligence-system  ·  DADS 6700  ·  Northeastern University  ·  Fall 2025</text>
 </svg>
